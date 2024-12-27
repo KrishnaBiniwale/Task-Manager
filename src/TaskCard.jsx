@@ -13,13 +13,13 @@ const togglePinned = () => {
   setPinDate(newPinnedDate);
 
   if (newPinnedState) {
-    fetch('/pins')
+    fetch('https://task-manager-api.glitch.me/pins')
       .then(response => response.json())
       .then(pins => {
         const existingPin = pins.find(pin => pin.pinDate === newPinnedDate);
 
         if (existingPin) {
-          fetch(`/tasks/${props.task.id}`, {
+          fetch(`https://task-manager-api.glitch.me/tasks/${props.task.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ pinId: existingPin.id }),
@@ -29,7 +29,7 @@ const togglePinned = () => {
           });
         } else {
           const newPinId = pins.length > 0 ? pins[pins.length - 1].id + 1 : 1;
-          fetch('/pins', {
+          fetch('https://task-manager-api.glitch.me/pins', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -37,7 +37,7 @@ const togglePinned = () => {
               pinDate: newPinnedDate,
             }),
           }).then(() => {
-            fetch(`/tasks/${props.task.id}`, {
+            fetch(`https://task-manager-api.glitch.me/tasks/${props.task.id}`, {
               method: 'PATCH',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ pinId: newPinId }),
@@ -49,7 +49,7 @@ const togglePinned = () => {
         }
       });
   } else {
-    fetch(`/tasks/${props.task.id}`, {
+    fetch(`https://task-manager-api.glitch.me/tasks/${props.task.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ pinId: 0 }),

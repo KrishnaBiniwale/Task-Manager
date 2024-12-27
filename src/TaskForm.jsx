@@ -31,7 +31,7 @@ export default function TaskForm(props) {
         }
 
         if (!task.id) {
-          fetch("/tasks")
+          fetch("https://task-manager-api.glitch.me/tasks")
             .then((response) => response.json())
             .then((tasks) => {
               const lastTaskId = tasks[tasks.length - 1].id;
@@ -200,7 +200,7 @@ export default function TaskForm(props) {
               clearTimeout(timeoutRef.current);
               if (value) {
                 timeoutRef.current = setTimeout(() => {
-                  fetch(`/tags/?label_like=${value}`)
+                  fetch(`https://task-manager-api.glitch.me/tags/?label_like=${value}`)
                     .then((response) => response.json())
                     .then((dbTags) => {
                       setSearchTags(dbTags);
@@ -216,7 +216,7 @@ export default function TaskForm(props) {
                 if (newTag !== "" && tags.map(tag => tag.label).includes(newTag)) {
                   toast.error("That tag is already present.");
                 } else if (newTag !== "") {
-                  fetch("/tags")
+                  fetch("https://task-manager-api.glitch.me/tags")
                     .then((response) => response.json())
                     .then((dbTags) => {
                       let tagAlreadyInDb = false;
@@ -233,7 +233,7 @@ export default function TaskForm(props) {
                           id: dbTagIds[dbTagIds.length - 1] + 1,
                           label: newTag
                         };
-                        fetch(`/tags`, {
+                        fetch(`https://task-manager-api.glitch.me/tags`, {
                           method: "POST",
                           body: JSON.stringify(newTagObject),
                           headers: {

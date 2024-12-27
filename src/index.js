@@ -64,7 +64,9 @@ const router = createBrowserRouter([
       {
         path: "/tasks/:taskId",
         loader({ params }) {
-          return fetch(`/tasks/${params.taskId}`)
+          return fetch(
+            `https://task-manager-api.glitch.me/tasks/${params.taskId}`
+          )
             .then((response) => response.json())
             .then((task) => {
               return fetchTags(task, false);
@@ -79,7 +81,9 @@ const router = createBrowserRouter([
       {
         path: "/tasks/:taskId/edit",
         loader({ params }) {
-          return fetch(`/tasks/${params.taskId}`)
+          return fetch(
+            `https://task-manager-api.glitch.me/tasks/${params.taskId}`
+          )
             .then((response) => response.json())
             .then((task) => {
               return fetchTags(task, true);

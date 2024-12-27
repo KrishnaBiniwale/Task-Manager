@@ -163,7 +163,7 @@ export default function Task() {
             Delete
           </button>
 
-          <Link to={`https://task-manager-api.glitch.me/tasks/${task.id}/edit`} className="btn btn-primary">
+          <Link to={`/tasks/${task.id}/edit`} className="btn btn-primary">
             Edit Task
           </Link>
         </div>
