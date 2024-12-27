@@ -18,7 +18,7 @@ export default function CreateTask() {
             "Content-type": "application/json",
           },
         }).then(() => {
-          navigate(`https://task-manager-api.glitch.me/tasks/${newTask.id}`);
+          navigate(`/tasks/${newTask.id}`);
           toast.success("Task created successfully.");
         });
       }}
