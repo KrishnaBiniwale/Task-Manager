@@ -21,7 +21,7 @@ export default function EditTask() {
             "Content-type": "application/json",
           },
         }).then(() => {
-          navigate(`https://task-manager-api.glitch.me/tasks/${updatedTask.id}`);
+          navigate(`/tasks/${updatedTask.id}`);
           toast.success("Task edited successfully.");
         });
       }}
